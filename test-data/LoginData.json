@@ -1,0 +1,79 @@
+[
+  {
+    "scenario": "Successful login with valid admin credentials",
+    "username": "tomsmith",
+    "password": "SuperSecretPassword!",
+    "expectedMessage": "You logged into a secure area!",
+    "run": true
+  },
+  {
+    "scenario": "Login with invalid admin username credentials",
+    "username": "tomsmitthh",
+    "password": "SuperSecretPassword!",
+    "expectedMessage": "Your username is invalid!",
+    "run": true
+  },
+  {
+    "scenario": "Login with invalid admin Password credentials",
+    "username": "tomsmith",
+    "password": "SuperSecretPasswordd!",
+    "expectedMessage": "Your password is invalid!",
+    "run": true
+  },
+  {
+    "scenario": "Login without admin Username credentials",
+    "username": "",
+    "password": "SuperSecretPassword!",
+    "expectedMessage": "Your username is invalid!",
+    "run": true
+  },
+  {
+    "scenario": "Login without admin Password credentials",
+    "username": "tomsmith",
+    "password": "",
+    "expectedMessage": "Your password is invalid!",
+    "run": true
+  },
+  {
+    "scenario": "Login with blank credentials",
+    "username": "",
+    "password": "",
+    "expectedMessage": "Username and password are required!",
+    "run": true
+  },
+  {
+    "scenario": "Login with trailing and leading spaces in username",
+    "username": "  tomsmith  ",
+    "password": "SuperSecretPassword!",
+    "expectedMessage": "Your username is invalid!",
+    "run": true
+  },
+  {
+    "scenario": "Login with wrong case for username",
+    "username": "TOMSMITH",
+    "password": "SuperSecretPassword!",
+    "expectedMessage": "Your username is invalid!",
+    "run": true
+  },
+  {
+    "scenario": "SQL Injection attempt in username field",
+    "username": "admin' OR '1'='1",
+    "password": "Password123!",
+    "expectedMessage": "Your username is invalid!",
+    "run": true
+  },
+  {
+    "scenario": "XSS script injection attempt in username field",
+    "username": "<script>alert('hack')</script>",
+    "password": "Password123!",
+    "expectedMessage": "Your username is invalid!",
+    "run": true
+  },
+  {
+    "scenario": "Login with a locked-out user account",
+    "username": "lockeduser",
+    "password": "SuperSecretPassword!",
+    "expectedMessage": "Your username is invalid!",
+    "run": false
+  }
+]
