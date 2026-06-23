@@ -6,6 +6,7 @@ export class LoginPage {
   readonly password: Locator;
   readonly loginBtn: Locator;
   readonly errorMsg: Locator;
+  readonly logoutBtn: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -13,6 +14,8 @@ export class LoginPage {
     this.password = page.locator("#password");
     this.loginBtn = page.locator(".radius");
     this.errorMsg = page.locator("#flash");
+
+    this.logoutBtn = page.locator("a.button.secondary.radius");
   }
 
   async gotoLoginPage() {
@@ -28,32 +31,19 @@ export class LoginPage {
     }
   }
 
-  // Navigates to the login page base URL
-  // async gotoLoginPage() {
-  //   await this.page.goto("https://the-internet.herokuapp.com/login");
-  // }
-
-  // async gotoLoginPage() {
-  //   await this.page.goto("https://the-internet.herokuapp.com/login", {
-  //     waitUntil: "networkidle",
-  //   });
-  // }
-
-  //   async gotoLoginPage() {
-  //   await this.page.goto("https://the-internet.herokuapp.com/login");
-  // }
-
-  // async gotoLoginPage() {
-  //   await this.page.goto("https://the-internet.herokuapp.com/login", {
-  //     waitUntil: "networkidle",
-  //   });
-  // }
   // To fill the login form:
   async fillLoginForm(user: string, pass: string) {
     await this.username.fill(user);
     await this.password.fill(pass);
     await this.loginBtn.click();
   }
+
+  async clickLogout() {
+    await this.logoutBtn.click();
+    const response = await this.page.goto("https://the-internet.herokuapp.com/login")
+  }
+
+  
 
   errorMessage(): Locator {
     return this.errorMsg;
